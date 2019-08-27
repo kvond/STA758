@@ -1,0 +1,114 @@
+---
+title: "Understanding Inference"
+author: "Katherine von Duyke"
+date: "8/27/2019"
+output: html_document
+---
+## install.packages("NHANES") ("ggplot2") ("tidyverse") ("infer")
+
+```{r}
+# Load packages
+library(NHANES)
+library(ggplot2)
+library(tidyverse)
+library(infer)
+# What are the variables in the NHANES dataset?
+colnames(NHANES)
+# Name an object "homes" that will pass NHANES data to a selection of Gender and Homeown, then filter this again by HomeOwn for thoes that"Own" and "rent" by gender.
+homes <- NHANES %>% select(Gender, HomeOwn) %>% filter(HomeOwn%in% c("Own", "Rent"))
+#check out what your new filtered data looks like
+homes
+```
+## About the Nhanes package
+You can read about this data and access raw data here: https://www.rdocumentation.org/packages/NHANES/versions/2.1.0/topics/NHANES
+
+## Model a null hypothesis and randomize the data to calculate permuted statistics. 
+Permute the home ownership variable 10 times. The null hypothesis would be that there is no difference between male and female ownership except that expected by normal variability. (Your hypothesis may be that there is a difference!)
+
+
+```{r}
+#Name a new data object "homeown_perm" (perm for permutation). Tell R to draw on the homes data set that you have already filtered into gender and own or rent. The argument "specify" lets you specify the response and explanatory variables. Specify that HomeOwn (which contains "Own" or "Rent") will be the dependent (or response) variable against gender as the explanatory variable. Set success for "Own" which we will check for differences between genders.
+homeown_perm <- homes %>%  specify(HomeOwn ~ Gender, success ="Own")
+```
+```{r}
+#Take a look at the infer package to understand the arguments: https://infer.netlify.com/
+#ask R to perform 100 permutations. Note that your Null hypothesis suggests independence between gender and home ownership. You then ask R to calculate the difference in proportions between female and male owners for each permuted "sample".
+homeown_perm <- homes %>%
+  specify(HomeOwn ~ Gender, success = "Own") %>%
+  hypothesize(null = "independence") %>% 
+  generate(reps = 100, type = "permute") %>% 
+  calculate("diff in props", order = c("male", "female"))
+```
+
+```{r}
+#Next you will calculate a density plot
+ggplot(homeown_perm, aes(x = stat)) + 
+  geom_density()
+```
+
+```{r}
+#do it again but try 1000 permutations, it takes a little while :)
+homeown_perm <- homes %>%
+  specify(HomeOwn ~ Gender, success = "Own") %>%
+  hypothesize(null = "independence") %>% 
+  generate(reps = 1000, type = "permute") %>% 
+  calculate("diff in props", order = c("male", "female"))
+```
+```{r}
+#Again calculate a density plot. Note that you asked for your new data object, with a label of stat on the X axis. A density plot looks at the area under the curve
+ggplot(homeown_perm, aes(x = stat)) + 
+  geom_density()
+```
+
+##it doesn't look as though the differences generated are all that extreme. Let's check.
+
+```{r}
+# First find the mean of all the permutations for the stat
+x <- (homeown_perm $stat)
+# select just x if you want to see the data
+mean(x)
+#then plot your mean line on the density plot 
+ggplot(homeown_perm, aes(x = stat)) + 
+ geom_density() +
+geom_vline(aes(xintercept = -0.0000396, color = "red"))
+
+#suppose our actual observed statistics was -0.0078 Would that be unusual?
+
+ggplot(homeown_perm, aes(x = stat)) + 
+ geom_density() +
+geom_vline(aes(xintercept = -0.0078, color = "red"))
+
+#it looks like what we might expect due to normal variability.
+
+#how many permutations were smaller than our observed value?
+
+homeown_perm %>% summarize(n_perm_le_obs = sum(stat <= -0.0078))
+
+#there is no evidence that the observed data differs from normal variability. It doesn't mean that gender plays no roll, but only that we can't reject the null hypothesis. The Nhanes is a good sample of the entire US population, but no claim can be made at this point.
+```
+
+##Lets look at it another way
+```{r}
+homeown_perm <- homes %>% 
+specify(HomeOwn ~ Gender, success = "Own") %>%
+hypothesize(null = "independence") %>% 
+generate(reps = 100, type = "permute")
+homeown_perm %>% group_by(replicate) %>% count(HomeOwn, Gender)
+
+```
+
+```{r}
+homeown_perm %>% calculate("diff in props", order = c("male", "female"))
+```
+
+```{r}
+# ask R to name a new object diff_orig then pipe the homes data through a filter first by gender, and then to summarize the means of all home owners who own by gender. Then summarixe the difference in the means by gender. Pull the stat and display it. Pull pulls out a single variable, try with and without this command.
+diff_orig <- homes %>% group_by(Gender) %>% summarize(prop_own = mean(HomeOwn == "Own")) %>% summarize(stat = diff(prop_own)) %>% pull()
+diff_orig
+
+summary(homeown_perm)
+```
+
+
+
+
