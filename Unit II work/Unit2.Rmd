@@ -1,0 +1,54 @@
+---
+title: "Unit II"
+author: "Dr. Katherine von Duyke"
+date: "8/20/2019"
+output: html_document
+---
+### Connected Texts:
+Naked Statistics
+R for Beginners - print a file to keep a record of R commands
+R for Data Science - especially useful for organizing work
+SEW Statistics the Easy Way - connects R and intro to Stats
+<https://drive.google.com/drive/folders/1HOgm6uHRL_4zJX2UkILiD7RLcL92T_aG> 
+
+## Introduction to inferential Statistics
+Descriptive Statistics: the frame of reference is the observed data. A statistic is computed in the context of the data frame.
+
+Inferential Statistics: the frame of reference extends to all possible data sets that could have been sampled including the observed data as one among many. The statistic is computed from a random sample (a representative of many possible samples). 
+
+The aim of inferential statistics is to gain insight on the population from the measure observed on the sample set as a probabilistic value. The measure observed is called an estimator. It provides a parameter of the population.
+
+## Central Limit Theorem
+Intro video <https://drive.google.com/file/d/1T-DRL2TEzyEfQJRd4mXuZbbkSrcOFIpO/view?usp=sharing>
+
+## Understanding Sampling distributions
+In the following free intro to *Foundations of Inference* by datacamp  <https://www.datacamp.com/courses/foundations-of-inference>. you can run a simulation of data sampling from 5-1000 or more times, to see what kinds of means from your data samples are generated, and what the distribution of sampling due to variability looks like. You then compute the difference between your sample means in a data set, and note if the difference between the means falls within the sampling variability or outside of it. This makes this somewhat abstract idea much more readily accessible to your understanding!
+
+##Standard Error
+
+###Compute the standard error of the mean in R
+```{r}
+#generate some random data
+x<-rnorm(10)
+#compute the standard deviation
+sd(x)
+#computation of the standard error of the mean
+sem<-sd(x)/sqrt(length(x))
+#95% confidence intervals of the mean
+c(mean(x)-2*sem, mean(x)+2*sem)
+```
+### Another way using an R package.
+The psych package has descriptive statistics that includes the standard error as se. first you have to install.packages("psych"). Try this code. Then try your own code and one of your continuous variables. Use describe(Mydata$V1< type=2)
+```{r}
+library(psych)
+Mydata<-rnorm(100)
+describe(Mydata, type=2)
+```
+
+##insert data files to pull to try with.
+
+
+
+
+
+
