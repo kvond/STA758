@@ -1,9 +1,0 @@
----
-title: "Regression"
-author: "Katherine von Duyke"
-date: "8/27/2019"
-output: html_document
----
- see https://moderndive.com/index.html
- 
- Also try https://github.com/swirldev/swirl_courses
