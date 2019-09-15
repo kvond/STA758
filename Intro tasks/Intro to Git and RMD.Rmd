@@ -136,9 +136,8 @@ Go to file, scroll down to recent projects, find the one you opened and it will 
 https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
 ## What is an R project?
-From
-https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html
+See https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html
 
-I think the R project file is just the directory information - not a notebook or anything - just a tag - so you can get back to that directory with that tag.
+The R project file is just the directory information and changes to your project.
 
-If you’re using RStudio, you have the option of creating a new R project. A project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in.
+"If you’re using RStudio, you have the option of creating a new R project. A project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in."
