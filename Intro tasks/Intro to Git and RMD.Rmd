@@ -122,21 +122,23 @@ More invoved tutorial here (and more clear) https://ourcodingclub.github.io/2017
 Similar Tutorial: https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners Pick the one that resonates with you.
 A deeper tutorial group that you join on github: https://lab.github.com/githubtraining/communicating-using-markdown
 
-## When you need to reselect a repository or link to a different one
-Advanced: Link to a (different) remote repository
-You may already have a local repository, like in this tutorial the rstudio-git-test repository, or want to fork your own project (which GitHub interestingly doesn’t provide the options to do so). In this case you need to link your local repository with a (new) remote repository (and remove the old remote repository).
+## How to push and pull into Github
+Assuming first that you have connected to your project
+You have to elect what is staged by checking it and hit commit
+Then write in the comment box something and submit
+THEN hit the push or pull errors in top right of screen
+See: https://www.youtube.com/watch?v=E2d91v1Twcc
 
-1. Create a new GitHub repository and copy the HTTPS url of the new repository e.g. https://github.com/yourusername/rstudio-git-test2.git.
+## How to open an existing project on GitHub from within Rstudio
 
-2. Set the new remote repository in the Git shell: Open the Git shell from RStudio Tools > Shell.. and type the following commands to set the new remote repository.
-Type git remote -v show to show current remote repository to verify the location of the current repository.
+Go to file, scroll down to recent projects, find the one you opened and it will connect to the remote GIT site at the point of your project.
 
-git remote set-url origin https://github.com/yourusername/rstudio-git-test2.git
-git remote add upstream https://github.com/yourusername/rstudio-git-test2.git
-git push origin master
-git push --all
-Note: In case push/pull is greyed out in R stackoverflow use git push -f origin master and then git push -u origin master.
+https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
-Note 2: Use git remote rm origin and git remote rm upstream if you want to remove the remote location from the current git folder. (origin is rather a convention than a command)
-from http://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/
-© 2019 GitHub, Inc.
+## What is an R project?
+From
+https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html
+
+I think the R project file is just the directory information - not a notebook or anything - just a tag - so you can get back to that directory with that tag.
+
+If you’re using RStudio, you have the option of creating a new R project. A project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in.
