@@ -117,3 +117,20 @@ More invoved tutorial here (and more clear) https://ourcodingclub.github.io/2017
 Similar Tutorial: https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners Pick the one that resonates with you.
 A deeper tutorial group that you join on github: https://lab.github.com/githubtraining/communicating-using-markdown
 
+## When you need to reselect a repository or link to a different one
+Advanced: Link to a (different) remote repository
+You may already have a local repository, like in this tutorial the rstudio-git-test repository, or want to fork your own project (which GitHub interestingly doesn’t provide the options to do so). In this case you need to link your local repository with a (new) remote repository (and remove the old remote repository).
+
+1. Create a new GitHub repository and copy the HTTPS url of the new repository e.g. https://github.com/yourusername/rstudio-git-test2.git.
+
+2. Set the new remote repository in the Git shell: Open the Git shell from RStudio Tools > Shell.. and type the following commands to set the new remote repository.
+Type git remote -v show to show current remote repository to verify the location of the current repository.
+
+git remote set-url origin https://github.com/yourusername/rstudio-git-test2.git
+git remote add upstream https://github.com/yourusername/rstudio-git-test2.git
+git push origin master
+git push --all
+Note: In case push/pull is greyed out in R stackoverflow use git push -f origin master and then git push -u origin master.
+
+Note 2: Use git remote rm origin and git remote rm upstream if you want to remove the remote location from the current git folder. (origin is rather a convention than a command)
+from http://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/
