@@ -1,0 +1,46 @@
+---
+title: "Intro to RMD"
+author: "kvond"
+date: "9/14/2019"
+output: html_document
+---
+## R Markdown
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## What is R Markdown?
+R Markdown allows you to create documents that serve as a neat record of your analysis. In the world of reproducible research, we want other researchers to easily understand what we did in our analysis, otherwise nobody can be certain that you analysed your data properly. You might choose to create an RMarkdown document as an appendix to a paper or project assignment that you are doing, upload it to an online repository such as Github, or simply to keep as a personal record so you can quickly look back at your code and see what you did. RMarkdown presents your code alongside its output (graphs, tables, etc.) with conventional text to explain it, a bit like a notebook. Notes in this RMD are from https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html 
+
+## R Output
+Put your cursor in the code chunk and select Run from the menu tab or use the green arrow within the code chunk on the upper right.
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Plot
+
+```{r pressure}
+plot(pressure)
+```
+## Hiding code chunks
+If you don't want the code of a particular code chunk to appear in the final document, but still want to show the output (e.g. a plot), then you can include echo = FALSE in the code chunk instructions.
+
+```{r, echo = TRUE}
+A <- c("a", "a", "b", "b")
+B <- c(5, 10, 15, 20)
+dataframe <- data.frame(A, B)
+```
+```
+Here echo is set to True, which is the default, so you should see the R code chunk. I did not add the command to plot the dataframe, so you won't see that until the code runs again, this time with echo set to FALSE.
+```{r, echo = FALSE}
+A <- c("a", "a", "b", "b")
+B <- c(5, 10, 15, 20)
+dataframe <- data.frame(A, B)
+plot(dataframe)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot - you should only see the plot and not the code chunk.
+
+

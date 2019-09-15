@@ -1,0 +1,30 @@
+---
+title: "Intro to Github"
+author: "kvond"
+date: "9/14/2019"
+output: html_document
+---
+
+## Get Github
+Download for Mac: https://git-scm.com/download/mac 
+Download for Windows:  https://git-scm.com/download/win 
+Set up a free account here: https://github.com/
+For a private account you need $7 per month
+Create a repository: go to the repositories menu tab at the top and choose "New"
+Find the homework STA758 repository here: https://github.com/kvond/STA758/tree/master/studenthomework 
+
+## How to open an existing project on GitHub from within Rstudio
+Go to file, scroll down to recent projects, find the one you opened and it will connect to the remote GIT site at the point of your project.
+https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
+
+## What is an R project?
+See https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html
+The R project file is just the directory information and changes to your project.
+
+"If you’re using RStudio, you have the option of creating a new R project. A project is simply a working directory designated with a .RProj file. When you open a project (using File/Open Project in RStudio or by double–clicking on the .Rproj file outside of R), the working directory will automatically be set to the directory that the .RProj file is located in."
+
+## References for GitHub
+Basic use instructions: https://git-scm.com/docs
+More invoved tutorial here (and more clear) https://ourcodingclub.github.io/2017/02/27/git.html Note the Mac issues seem to have been resolved.
+Similar Tutorial: https://product.hubspot.com/blog/git-and-github-tutorial-for-beginners Pick the one that resonates with you.
+A deeper tutorial group that you join on github: https://lab.github.com/githubtraining/communicating-using-markdown
