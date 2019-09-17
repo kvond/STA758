@@ -17,7 +17,7 @@ Find the homework STA758 repository here: https://github.com/kvond/STA758/tree/m
 Go to file, scroll down to recent projects, find the one you opened and it will connect to the remote GIT site at the point of your project.
 https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects
 
-If you have not selected an *.Rproj your directory can't be found.
+If you have not selected an *.Rproj your directory can't be found in R studio. The files talk to each other through this linkage.
 
 ## What is an R project?
 See https://bookdown.org/ndphillips/YaRrr/projects-in-rstudio.html
